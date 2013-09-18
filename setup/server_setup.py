@@ -285,7 +285,7 @@ def get_options(argv):
     return options
 
 def main(argv=["server_setup.py"]):
-    check_ubuntu_version()
+    #check_ubuntu_version()
     opts = get_options(argv)
     with Environ("DEBIAN_FRONTEND", "noninteractive"):
         for install in opts.installs:
