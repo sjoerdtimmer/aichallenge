@@ -62,7 +62,7 @@ function create_new_organization( $org_name ) {
 }
 
 // By default, send account confirmation emails.
-$send_email = 1;
+$send_email = 0;
 
 $errors = array();
 // Check that required information was sent
