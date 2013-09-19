@@ -4,7 +4,7 @@ $title="Create Your Account";
 require_once 'header.php';
 require_once 'mysql_login.php';
 require_once 'server_info.php';
-
+print_r($server_info);
 if($server_info["submissions_open"]) { ?>
 <script>
     function onClickOrganization(element) {
