@@ -44,7 +44,7 @@ def main():
                 add, cur_buffer))
             for i in range(add):
                 cursor.execute("call generate_matchup")
-                cursor.nextset()
+                while cursor.nextset() is not None: pass
 
 if __name__ == "__main__":
     main()
