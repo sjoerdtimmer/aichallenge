@@ -43,7 +43,7 @@ def main():
             log("Adding %d matches to buffer already having %d" % (
                 add, cur_buffer))
             for i in range(add):
-                echo("adding matchup:")
+                print("adding matchup:")
                 cursor.execute("call generate_matchup")
                 while cursor.nextset() is not None: pass
 
