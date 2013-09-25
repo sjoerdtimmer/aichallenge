@@ -27,23 +27,33 @@ def add_matchup():
         print("MySQL Error %d: %s"%(e.args[0],e.args[1]))
        
 
+def get_num_matchups():
+    try:
+        con = MySQLdb.connect(host = server_info["db_host"],
+                             user = server_info["db_username"],
+                             passwd = server_info["db_password"],
+                             db = server_info["db_name"])
+        cur =  con.cursor()
+        cur.execute("select count(*) from matchup where worker_id is NULL")
+        res = cur.fetchone()[0]
+        cur.close()
+        con.close()
+        return res
+    except MySQLdb.Error, e:
+        print("MySQL Error %d: %s"%(e.args[0],e.args[1]))
+
+
 
 def main():
-    connection = MySQLdb.connect(host = server_info["db_host"],
-                                 user = server_info["db_username"],
-                                 passwd = server_info["db_password"],
-                                 db = server_info["db_name"])
-    
-
     buf_size = DEFAULT_BUFFER
     log("Buffer size set to %d" % (buf_size,))
 
     fill_size = buf_size
     full = False
     while True:
-        cursor = connection.cursor()
-        cursor.execute("select count(*) from matchup where worker_id is NULL")
-        cur_buffer = cursor.fetchone()[0]
+        
+        
+        cur_buffer = get_num_matchups()
         cursor.close()
 
         if cur_buffer >= buf_size:
@@ -63,18 +73,6 @@ def main():
                 add, cur_buffer))
             for i in range(add):
                 add_matchup()
-                #print("adding matchup:")
-                #cursor = connection.cursor()
-                #cursor.callproc("generate_matchup")
-                #cursor.close()
-                #connection.commit()
-                #cursor.execute("call generate_matchup")
-                #print("result:")
-                #print(cursor.fetchall())
-                #r = 1
-                #while r is not None:
-                #    r = cursor.nextset()
-                #    print("next set: %s"%r)
 
 if __name__ == "__main__":
     main()
