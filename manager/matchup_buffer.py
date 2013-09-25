@@ -45,8 +45,12 @@ def main():
             for i in range(add):
                 print("adding matchup:")
                 cursor.execute("call generate_matchup")
+                print("result:")
                 print(cursor.fetchall())
-                #while cursor.nextset() is not None: pass
+                r = 1
+                while r is not None:
+                    r = cursor.nextset()
+                    print("next set: %s"%r)
 
 if __name__ == "__main__":
     main()
