@@ -45,6 +45,7 @@ def main():
             for i in range(add):
                 print("adding matchup:")
                 cursor.callproc("generate_matchup")
+                cursor.commit()
                 #cursor.execute("call generate_matchup")
                 #print("result:")
                 #print(cursor.fetchall())
