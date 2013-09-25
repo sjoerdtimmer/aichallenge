@@ -17,7 +17,7 @@ def main():
                                  user = server_info["db_username"],
                                  passwd = server_info["db_password"],
                                  db = server_info["db_name"])
-    cursor = connection.cursor()
+    
 
     buf_size = DEFAULT_BUFFER
     log("Buffer size set to %d" % (buf_size,))
@@ -25,8 +25,10 @@ def main():
     fill_size = buf_size
     full = False
     while True:
+        cursor = connection.cursor()
         cursor.execute("select count(*) from matchup where worker_id is NULL")
         cur_buffer = cursor.fetchone()[0]
+        cursor.close()
         if cur_buffer >= buf_size:
             log("Buffer full with %d matches in buffer" % (cur_buffer,))
             time.sleep(10)
@@ -44,8 +46,10 @@ def main():
                 add, cur_buffer))
             for i in range(add):
                 print("adding matchup:")
+                cursor = connection.cursor()
                 cursor.callproc("generate_matchup")
-                connection.commit()
+                cursor.close()
+                #connection.commit()
                 #cursor.execute("call generate_matchup")
                 #print("result:")
                 #print(cursor.fetchall())
