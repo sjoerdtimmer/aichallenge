@@ -44,13 +44,14 @@ def main():
                 add, cur_buffer))
             for i in range(add):
                 print("adding matchup:")
-                cursor.execute("call generate_matchup")
-                print("result:")
-                print(cursor.fetchall())
-                r = 1
-                while r is not None:
-                    r = cursor.nextset()
-                    print("next set: %s"%r)
+                cursor.callproc("generate_matchup")
+                #cursor.execute("call generate_matchup")
+                #print("result:")
+                #print(cursor.fetchall())
+                #r = 1
+                #while r is not None:
+                #    r = cursor.nextset()
+                #    print("next set: %s"%r)
 
 if __name__ == "__main__":
     main()
