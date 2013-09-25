@@ -18,7 +18,7 @@ def add_matchup():
                              user = server_info["db_username"],
                              passwd = server_info["db_password"],
                              db = server_info["db_name"]) as con:
-            with con.cursor() as cur
+            with con.cursor() as cur:
                 cur.callproc("generate_matchup",())
                 cur.close()
                 con.commit()
