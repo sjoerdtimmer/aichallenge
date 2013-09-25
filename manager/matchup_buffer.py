@@ -51,11 +51,7 @@ def main():
     fill_size = buf_size
     full = False
     while True:
-        
-        
         cur_buffer = get_num_matchups()
-        cursor.close()
-
         if cur_buffer >= buf_size:
             log("Buffer full with %d matches in buffer" % (cur_buffer,))
             time.sleep(10)
