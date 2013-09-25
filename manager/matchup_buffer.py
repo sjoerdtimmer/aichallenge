@@ -12,6 +12,22 @@ def log(msg):
     timestamp = time.asctime()
     print "%s: %s" % (timestamp, msg)
 
+def add_matchup():
+    try:
+        with MySQLdb.connect(host = server_info["db_host"],
+                             user = server_info["db_username"],
+                             passwd = server_info["db_password"],
+                             db = server_info["db_name"]) as con:
+            with con.cursor() as cur
+                cur.callproc("generate_matchup",())
+                cur.close()
+                con.commit()
+                con.close()
+    except MySQLdb.Error, e:
+        print("MySQL Error %d: %s"%(e.args[0],e.args[1]))
+       
+
+
 def main():
     connection = MySQLdb.connect(host = server_info["db_host"],
                                  user = server_info["db_username"],
@@ -29,6 +45,7 @@ def main():
         cursor.execute("select count(*) from matchup where worker_id is NULL")
         cur_buffer = cursor.fetchone()[0]
         cursor.close()
+
         if cur_buffer >= buf_size:
             log("Buffer full with %d matches in buffer" % (cur_buffer,))
             time.sleep(10)
@@ -45,11 +62,12 @@ def main():
             log("Adding %d matches to buffer already having %d" % (
                 add, cur_buffer))
             for i in range(add):
+                add_matchup()
                 #print("adding matchup:")
-                cursor = connection.cursor()
-                cursor.callproc("generate_matchup")
-                cursor.close()
-                connection.commit()
+                #cursor = connection.cursor()
+                #cursor.callproc("generate_matchup")
+                #cursor.close()
+                #connection.commit()
                 #cursor.execute("call generate_matchup")
                 #print("result:")
                 #print(cursor.fetchall())
