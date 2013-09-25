@@ -49,7 +49,7 @@ def main():
                 cursor = connection.cursor()
                 cursor.callproc("generate_matchup")
                 cursor.close()
-                #connection.commit()
+                connection.commit()
                 #cursor.execute("call generate_matchup")
                 #print("result:")
                 #print(cursor.fetchall())
