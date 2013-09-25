@@ -45,7 +45,7 @@ def main():
             log("Adding %d matches to buffer already having %d" % (
                 add, cur_buffer))
             for i in range(add):
-                print("adding matchup:")
+                #print("adding matchup:")
                 cursor = connection.cursor()
                 cursor.callproc("generate_matchup")
                 cursor.close()
