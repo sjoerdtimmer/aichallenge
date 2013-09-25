@@ -14,15 +14,15 @@ def log(msg):
 
 def add_matchup():
     try:
-        with MySQLdb.connect(host = server_info["db_host"],
+        con = MySQLdb.connect(host = server_info["db_host"],
                              user = server_info["db_username"],
                              passwd = server_info["db_password"],
-                             db = server_info["db_name"]) as con:
-            with con.cursor() as cur:
-                cur.callproc("generate_matchup",())
-                cur.close()
-                con.commit()
-                con.close()
+                             db = server_info["db_name"])
+        cur =  con.cursor()
+        cur.callproc("generate_matchup",())
+        cur.close()
+        con.commit()
+        con.close()
     except MySQLdb.Error, e:
         print("MySQL Error %d: %s"%(e.args[0],e.args[1]))
        
