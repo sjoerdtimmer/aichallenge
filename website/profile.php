@@ -229,7 +229,7 @@ echo "</div>";
         if ($pc_result) {
             $pc_row = mysql_fetch_assoc($pc_result);
             if ($userdata["rank"] >= $pc_row["pairing_cutoff"]) {
-                echo "<p>Sorry you are outside of the pairing cutoff, you're unlikely to play in anymore games</p>";
+                echo "<p></p>";
                 $cutoff = true;
             }
         }

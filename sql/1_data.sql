@@ -246,7 +246,7 @@ INSERT INTO `country` VALUES (1,'BR','Brazil','br.png'),
 UNLOCK TABLES;
 
 LOCK TABLES `organization` WRITE;
-INSERT INTO `organization` VALUES (0,'Other'),
+INSERT INTO `organization` VALUES (0,'Utrecht University'),
 (1,'University of Waterloo'),
 (2,'AGH UST'),
 (3,'Alexandria University'),
