@@ -120,7 +120,7 @@ pre code {
 
 /*Tables*/
 th {
-    color: #050;
+    color: #0000D0;
     padding-left: 2px;
     padding-right: 5px;
 }
@@ -146,7 +146,7 @@ th.headerSortDown:after {
 }
 
 table.submissions {
-	width: 100%;
+    width: 100%;
 }
 
 /* Games */
@@ -174,15 +174,15 @@ table.games td.list {
 }
 
 table.games td.time {
-	width: 90px;
+    width: 90px;
 }
 
 table.games td.map {
-	width: 90px;
+    width: 90px;
 }
 
 table.games td.game {
-	width: 120px;
+    width: 120px;
 }
 
 table.games td.list span {
@@ -194,8 +194,8 @@ table.games td.list span {
 }
 
 table.games td.list span em {
-	font-style: italic;
-	color: #aaa;
+    font-style: italic;
+    color: #aaa;
 }
 
 table.games tr:hover {
@@ -246,7 +246,8 @@ tr.odd {
     border: solid 1px #f8f8f8;
 }
 tr.even {
-    background-color: #f8fff0;
+    border: solid 1px #f8f8f8;
+    background-color: #f8f8f8;
 }
 td.number {
     font-family: Consolas, Inconsolata, monospace;
@@ -259,7 +260,7 @@ table.login caption {
 }
 
 table.login {
-	margin: 0px 40px;
+    margin: 0px 40px;
 }
 
 table.login th {
@@ -268,8 +269,8 @@ table.login th {
 }
 
 table.login td {
-	padding: 0px 5px;
-	vertical-align: top;
+    padding: 0px 5px;
+    vertical-align: top;
 }
 
 /* Misc */
@@ -306,10 +307,10 @@ strong {
 }
 
 .stats {
-	color: #050;
-	font-size: 20px;
-	padding: 10px;
-	padding-bottom: 0px;
+    color: #050;
+    font-size: 20px;
+    padding: 10px;
+    padding-bottom: 0px;
 }
 
 .serverstats {
@@ -364,38 +365,38 @@ pre.error {
 }
 
 .countdown {
-	position: absolute;
-	top: 0;
-	left: 0;
+    position: absolute;
+    top: 0;
+    left: 0;
     text-align: center;
     margin: 5px;
 }
 
 .countdown_row {
-	float: left;
+    float: left;
 }
 
 .countdown_section {
-	display: inline-block;
-	font-size: 1em;
-	border: solid 1px #000;
-	background-color: rgba(255, 255, 255, 0.35);
-	width: 50px;
-	text_align: center;
-	padding: 3px;
-	margin: 3px;
-	color: #fff;
-	border-radius: 7px;
+    display: inline-block;
+    font-size: 1em;
+    border: solid 1px #000;
+    background-color: rgba(255, 255, 255, 0.35);
+    width: 50px;
+    text_align: center;
+    padding: 3px;
+    margin: 3px;
+    color: #fff;
+    border-radius: 7px;
 }
 
 .countdown_amount {
-	font-size: 2em;
+    font-size: 2em;
 }
 
 .countdown_descr {
-	clear: both;
-	color: #fff;
-	font-size: 1.5em;
-	text-align: center;
-	width: 250px;
+    clear: both;
+    color: #fff;
+    font-size: 1.5em;
+    text-align: center;
+    width: 250px;
 }
