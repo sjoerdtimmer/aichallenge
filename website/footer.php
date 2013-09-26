@@ -13,9 +13,9 @@
             <div class="columns">
                 <div class="left">
                     <div id="footer">
-                        <a href="server_stats.php">Server Statistics</a> |
+                        <!--<a href="server_stats.php">Server Statistics</a> |
                         <a href="credits.php">Credits</a> |
-                        <a href="rules.php">Rules</a>
+                        <a href="rules.php">Rules</a>-->
                     <div class="small right fade">
 <?php
 $page_render_total_time = intval((microtime(true) - $page_render_start_time) * 1000);

@@ -4,7 +4,7 @@
     <ul>
       <li><a href="rankings.php">Current Rankings</a></li>
       <li><a href="games.php">Latest Games</a></li>
-      <li><a href="maps.php">Official Maps</a></li>
+      <!--<li><a href="maps.php">Official Maps</a></li>-->
     </ul>
     <h1>My Account</h1>
     <?php if (logged_in_with_valid_credentials()) { ?>
@@ -25,7 +25,7 @@
       <li><a href="ants_tutorial.php">Ants Tutorial</a></li>
       <li><a href="rules.php">Contest Rules</a></li>
       <li><a href="using_the_tools.php">Using the Tools</a></li>
-      <li><a href="faq.php">Frequently Asked Questions</a></li>
+<!--      <li><a href="faq.php">Frequently Asked Questions</a></li>-->
     </ul>
     <h1>Ants</h1>
     <ul>
@@ -34,9 +34,9 @@
       <li><a href="specification.php">Game Specification</a></li>
       <li><a href="game_settings.php">Game Settings</a></li>
       <li><a href="strategy_guide.php">Strategy Guide</a></li>
-      <li><a href="http://paste.aichallenge.org/">Share Maps & Replays</a></li>
+      <!--<li><a href="http://paste.aichallenge.org/">Share Maps & Replays</a></li>-->
     </ul>
-    <h1>Community</h1>
+<!--    <h1>Community</h1>
     <ul>
       <li><a href="http://forums.aichallenge.org/">Forums</a></li>
       <li><a href="irc://irc.freenode.org/aichallenge">IRC</a> <a href="http://webchat.freenode.net/?channels=aichallenge&uio=d4">(webclient)</a></li>
@@ -51,5 +51,5 @@
     <form name="user_search_form" method="get" action="find_user.php">
         <input name="username" type="text" style="width: 10em" />
         <input type="submit" name="search" value="Go" />
-    </form>
+    </form>-->
 </div>

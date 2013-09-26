@@ -11,9 +11,12 @@ if(file_exists('server_message.html')) {
 
 ?>
 
-<!--<MarkdownReplacement with="competition.md">--><!--</MarkdownReplacement>-->
+<h1>Welcome to the B2KI AI Challenge!</h1>
+On this page you will find all the information you need to get started with the practical sessions of the B2KI course. 
+	Whoever wishes to show of his ant battling skills can also submit his bot in the online competition.
+Keep in mind though that your position in the ranking will not influence your grade!
 
-<p>Computer Programs Duking it Out with Ants:</p>
+<h1>Replay of the latest game:</h1>
 <?php
     $last_game_id = 0;
     if ($memcache)

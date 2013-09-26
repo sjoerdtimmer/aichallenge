@@ -4,8 +4,7 @@ $title="Create Your Account";
 require_once 'header.php';
 require_once 'mysql_login.php';
 require_once 'server_info.php';
-#print_r($server_info);
-#echo "hello world!!!";
+
 if($server_info["submissions_open"]) { ?>
 <script>
     function onClickOrganization(element) {
@@ -64,11 +63,11 @@ if($server_info["submissions_open"]) { ?>
     <td>Email Address</td>
     <td>&nbsp;</td>
     <td><input name="user_email" type="text" id="user_email" value="<?php echo isset($_POST['user_email'])?htmlentities($_POST['user_email'], ENT_COMPAT, "UTF-8"):'' ?>" /></td>
-    <td>You can use any email address. You will use this address to confirm
+    <td>You can use only your @students.uu.nl mail address. You will use this address to confirm
         the creation of your account.</td>
   </tr>
   <!-- Status -->
-  <tr>
+  <tr style="display:none">
     <td>Status</td>
     <td>&nbsp;</td>
     <td>
@@ -89,7 +88,7 @@ if($server_info["submissions_open"]) { ?>
     <td>Choose the option that best describes your academic status.
       First-year students may be eligible for special prizes.</td>
   <!-- School -->
-  <tr>
+  <tr style="display:none">
     <td>Organization</td>
     <td>&nbsp;</td>
     <td>
@@ -122,7 +121,7 @@ if($server_info["submissions_open"]) { ?>
     <td>If you are a student, select your school. If you are an
       employee, select your employer. Otherwise, select 'None'.</td>
   </tr>
-  <tr>
+  <tr style="display:none">
       <td>Other</td>
         <td>&nbsp;</td>
         <td>
@@ -132,30 +131,18 @@ if($server_info["submissions_open"]) { ?>
         <td>If your organization isn't present in drowdown, select 'Other' and enter your organization.</td>
   </tr>
   <!-- Country -->
-  <tr>
+  <tr style="display:none">
     <td>Country</td>
     <td>&nbsp;</td>
     <td>
       <select name="user_country" style="width:210px">
-      <option value="">&nbsp;</option>
-<?php
-  $query = "SELECT * FROM country ORDER BY country_id";
-  $result = mysql_query($query);
-  while ($row = mysql_fetch_assoc($result)) {
-    $country_id = $row['country_id'];
-    $country_name = $row['name'];
-    echo "<option value=$country_id>$country_name</option>";
-    if ($country_id == 11) {
-      echo "<option value=999>---</option>";
-    }
-  }
-?>
+      <option value="167">Netherlands, the</option>
       </select>
     </td>
     <td>Choose the country where you currently reside.</td>
   </tr>
   <!-- Biographical Information -->
-  <tr>
+  <tr style="display:none">
     <td>About You</td>
     <td>&nbsp;</td>
     <td><textarea name="bio" rows="3" cols="20"><?php echo isset($_POST['bio'])?htmlentities($_POST['bio'], ENT_COMPAT, "UTF-8"):'' ?></textarea></td>

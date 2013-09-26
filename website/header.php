@@ -6,9 +6,9 @@ $page_render_start_time = microtime(true);
 
 //Title mechanism, $title is declared on every page. CMS next year please.
 if(isset($title)) {
-  $title = $title." | AI Challenge";
+  $title = $title." | B2KI";
 } else {
-  $title = "AI Challenge";
+  $title = "B2KI";
 }
 
 ?>
@@ -57,11 +57,10 @@ flush();
             <div id="header" class="columns">
                 <div class="left">
                     <h1>AI Challenge</h1>
-                    <h3>Sponsored by Google</h3>
                 </div>
                 <div class="right">
-                    <h2>Ants</h2>
-                    <h3>Fall 2011</h3>
+                    <h2>B2KI</h2>
+                    <h3>2013/2014</h3>
                     <div id="triangle"></div>
                 </div>
             </div>

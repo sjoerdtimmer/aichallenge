@@ -4,11 +4,11 @@ html {
 }
 
 body {
-    background: #603814;
-    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#603814', endColorstr='#300400', GradientType=0); /* for IE */
-    background: -webkit-gradient(linear, left top, 0% 100%, from(#603814), to(#300400));
-    background: -moz-linear-gradient(top,  #603814,  #300400);
-    background: -o-linear-gradient(#603814,#300400);
+    background: #fff;
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#fff', endColorstr='#300400', GradientType=0); /* for IE */
+    background: -webkit-gradient(linear, left top, 0% 100%, from(#fff), to(#300400));
+    background: -moz-linear-gradient(top,  #fff,  #300400);
+    background: -o-linear-gradient(#fff,#300400);
     background-attachment: fixed;
 }
 

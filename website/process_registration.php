@@ -120,18 +120,21 @@ if (strlen($user_email) <= 0) {
 }
 
 // Check if the email is already in use (except by an admin account or a donotsend account).
-if (strcmp($user_email, "donotsend") != 0) {
+//if (strcmp($user_email, "donotsend") != 0) {
   $sql="select email from user where email = '$user_email' and admin = 0";
   $result = mysql_query($sql);
   if ($result && mysql_num_rows($result) > 0) {
-    $errors[] = "The email $user_email is already in use. You are only allowed to have one account! It is easy for us to tell if you have two accounts, and you will be disqualified if you have two accounts! If there is some problem with your existing account, get in touch with the contest organizers on irc.freenode.com channel #aichallenge and we will help you get up-and-running again!";
+    $errors[] = "The email $user_email is already in use. You are only allowed to have one account! It is easy for us to tell if you have two accounts, and you will be disqualified if you have two accounts! If there is some problem with your existing account, get in touch with the contest organizers (s.t.timmer@uu.nl) and we will help you get up-and-running again!";
   }
   $edomain = substr(strrchr($user_email, '@'), 1);
+  if(strcmp($edomain,'students.uu.nl')!=0 && strcmp($edomain,'uu.nl')!=0){
+    $errors[] = "Only @students.uu.nl are allowed in this contest";
+  }
   $mx_records = array();
   if (!getmxrr($edomain, $mx_records) && (strcmp(gethostbyname($edomain), $edomain) == 0)) {
     $errors[] = "Could not find the email address entered. Please enter a valid email address.";
   }
-}
+//}
 
 // Check if the username is made up of the right kinds of characters
 if (!valid_username($username)) {
@@ -294,10 +297,10 @@ if (count($errors) > 0) {
 <?php
 
 if ($send_email == 0) {
-  echo "<p>Confirmation emails are not being sent!</p>";
-  echo "<p>This should only be used when setting up a test server.</p>";
-  echo '<p><a href="account_confirmation.php?confirmation_code=' . 
-       $confirmation_code . '">Click Here</a> to activate the account.</p>';
+#  echo "<p>Confirmation emails are not being sent!</p>";
+#  echo "<p>This should only be used when setting up a test server.</p>";
+#  echo '<p><a href="account_confirmation.php?confirmation_code=' . 
+#       $confirmation_code . '">Click Here</a> to activate the account.</p>';
 }
 
 }  // end if
