@@ -20,11 +20,11 @@ include 'header.php';
   <tr>
     <th>language</th>
     <th>environment</th>
-    <th>alternatives</th>
-    <th>info</th>
+  <!--  <th>alternatives</th>
+    <th>info</th>-->
   </tr>
   <tr>
-    <td><a href="starter_packages/ada_starter_package.zip">Ada</a></td>
+<!--    <td><a href="starter_packages/ada_starter_package.zip">Ada</a></td>
     <td>gcc GNAT (Ubuntu/Linaro 4.5.2-8ubuntu4) 4.5.2</td>
     <td>&nbsp;</td>
     <td>Beta state, Timers not implemented yet</td>
@@ -34,14 +34,14 @@ include 'header.php';
     <td>gcc (Ubuntu/Linaro 4.5.2-8ubuntu4) 4.5.2</td>
     <td>&nbsp;</td>
     <td>&nbsp;</td>
-  </tr>
+  </tr>  -->
   <tr>
     <td><a href="starter_packages/csharp_starter_package.zip">C&#35;</a></td>
     <td>Mono version 2.6.7 (Debian 2.6.7-5ubuntu3)</td>
     <td>&nbsp;</td>
     <td>&nbsp;</td>
   </tr>
-  <tr>
+<!--  <tr>
     <td><a href="starter_packages/cpp_starter_package.zip">C++</a></td>
     <td>gcc (Ubuntu/Linaro 4.5.2-8ubuntu4) 4.5.2</td>
     <td>&nbsp;</td>
@@ -100,14 +100,14 @@ include 'header.php';
     <td>GHC, version 6.12.3</td>
     <td>&nbsp;</td>
     <td>&nbsp;</td>
-  </tr>
+  </tr>   -->
   <tr>
     <td><a href="starter_packages/java_starter_package.zip">Java</a></td>
     <td>OpenJDK 6 (IcedTea6 1.10.2) (6b22-1.10.2-0ubuntu1~11.04.1)</td>
     <td>&nbsp;</td>
     <td>&nbsp;</td>
   </tr>
-  <tr>
+<!--  <tr>
     <td><a href="starter_packages/javascript_starter_package.zip">JavaScript</a></td>
     <td>Node v0.4.10</td>
     <td>&nbsp;</td>
@@ -148,20 +148,20 @@ include 'header.php';
     <td>PHP 5.3.5-1ubuntu7.2 with Suhosin-Patch</td>
     <td>&nbsp;</td>
     <td>&nbsp;</td>
-  </tr>
+  </tr>  
   <tr>
     <td><a href="starter_packages/python_starter_package.zip">Python</a></td>
     <td>Python 2.7.1+</td>
     <td>&nbsp;</td>
     <td>&nbsp;</td>
-  </tr>
+  </tr>  -->
   <tr>
     <td><a href="starter_packages/python3_starter_package.zip">Python 3</a></td>
     <td>Python 3.2</td>
     <td>&nbsp;</td>
     <td>&nbsp;</td>
   </tr>
-  <tr>
+<!--  <tr>
     <td><a href="starter_packages/racket_starter_package.zip">Racket</a></td>
     <td>Racket v5.2</td>
     <td>&nbsp;</td>
@@ -190,7 +190,7 @@ include 'header.php';
     <td>Visual Basic.Net Compiler version 0.0.0.5917</td>
     <td>&nbsp;</td>
     <td>&nbsp;</td>
-  </tr>
+  </tr>-->
 </table>
 
 <?php include 'footer.php'; ?>
