@@ -62,7 +62,7 @@ function create_new_organization( $org_name ) {
 }
 
 // By default, send account confirmation emails.
-$send_email = 0;
+$send_email = 1;
 
 $errors = array();
 // Check that required information was sent
@@ -239,13 +239,16 @@ if (count($errors) <= 0) {
                     "After you activate your account, you will " .
                     "be able to sign in.\r\n Good luck!\r\n" .
                     "\r\nSjoerd Timmer";
+    echo("going to send email...");
     if ($send_email == 1 && strcmp($user_email, "donotsend") != 0) {
+      echo("really going to send email...");
       $headers = 'From: aichallenge@b2ki.science.uu.nl' . "\r\n" .
                    'Reply-To: no-reply@b2ki.science.uu.nl' . "\r\n" .
                    'X-Mailer: PHP/' . phpversion();
 
       $mail_accepted=mail($user_email, $mail_subject, $mail_content, $headers);
       //$mail_accepted = send_email($user_email, $mail_subject, $mail_content);
+      echo("mail sent");
     } else {
       $mail_accepted = true;
     }
@@ -256,6 +259,7 @@ if (count($errors) <= 0) {
         "activation_code='" . $confirmation_code . "'";
       mysql_query($query);
     } else {
+      echo("email sent successfully");
       // Send notification mail to contest admin.
       //$mail_subject = "New Contest User";
       //$mail_content = "username = " . $username . "\nOrganizationID = " .
