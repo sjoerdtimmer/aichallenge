@@ -104,7 +104,7 @@ if (strcmp($server_info["mailer_address"], "donotsend") == 0) {
 }
 else
 {
-    require_once "email.php";
+    //require_once "email.php";
 }
 
 // Check if the username already exists.
@@ -232,15 +232,20 @@ if (count($errors) <= 0) {
     if (strlen($activation_url) < 5) {
       $activation_url = "http://aichallenge.org/account_confirmation.php";
     }
-    $mail_content = "Welcome to the contest! Click the link below in order " .
-      "to activate your account.\n\n" .
-      $activation_url .
-      "?confirmation_code=" . $confirmation_code . "\n\n" .
-      "After you activate your account by clicking the link above, you will " .
-      "be able to sign in and start competing. Good luck!\n\n" .
-      $peer_message . "Thanks for participating and have fun,\nContest Staff\n";
+    $mail_content = "Welcome to the B2ki AI contest!\r\n".
+                    "To activate your account click the link below:\r\n\r\n" .
+                    $activation_url .
+                    "?confirmation_code=" . $confirmation_code . "\r\n\r\n" .
+                    "After you activate your account, you will " .
+                    "be able to sign in.\r\n Good luck!\r\n" .
+                    "\r\nSjoerd Timmer";
     if ($send_email == 1 && strcmp($user_email, "donotsend") != 0) {
-      $mail_accepted = send_email($user_email, $mail_subject, $mail_content);
+      $headers = 'From: aichallenge@b2ki.science.uu.nl' . "\r\n" .
+                   'Reply-To: no-reply@b2ki.science.uu.nl' . "\r\n" .
+                   'X-Mailer: PHP/' . phpversion();
+
+      $mail_accepted=mail($user_email, $mail_subject, $mail_content, $headers);
+      //$mail_accepted = send_email($user_email, $mail_subject, $mail_content);
     } else {
       $mail_accepted = true;
     }
