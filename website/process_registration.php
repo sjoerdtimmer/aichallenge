@@ -240,6 +240,8 @@ if (count($errors) <= 0) {
                     "be able to sign in.\r\n Good luck!\r\n" .
                     "\r\nSjoerd Timmer";
     echo("going to send email...");
+    var_dump($send_email);
+    var_dump($user_email);
     if ($send_email == 1 && strcmp($user_email, "donotsend") != 0) {
       echo("really going to send email...");
       $headers = 'From: aichallenge@b2ki.science.uu.nl' . "\r\n" .
