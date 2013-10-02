@@ -239,18 +239,18 @@ if (count($errors) <= 0) {
                     "After you activate your account, you will " .
                     "be able to sign in.\r\n Good luck!\r\n" .
                     "\r\nSjoerd Timmer";
-    echo("going to send email...");
-    var_dump($send_email);
-    var_dump($user_email);
+    //echo("going to send email...");
+    //var_dump($send_email);
+    //var_dump($user_email);
     if ($send_email == 1 && strcmp($user_email, "donotsend") != 0) {
-      echo("really going to send email...");
-      $headers = 'From: aichallenge@b2ki.science.uu.nl' . "\r\n" .
-                   'Reply-To: no-reply@b2ki.science.uu.nl' . "\r\n" .
+      //echo("really going to send email...");
+      $headers = 'From: no-reply@b2ki.science.uu.nl' . "\r\n" .
+                   'Reply-To: s.t.timmer@uu.nl' . "\r\n" .
                    'X-Mailer: PHP/' . phpversion();
 
       $mail_accepted=mail($user_email, $mail_subject, $mail_content, $headers);
       //$mail_accepted = send_email($user_email, $mail_subject, $mail_content);
-      echo("mail sent");
+      //echo("mail sent");
     } else {
       $mail_accepted = true;
     }
@@ -261,7 +261,7 @@ if (count($errors) <= 0) {
         "activation_code='" . $confirmation_code . "'";
       mysql_query($query);
     } else {
-      echo("email sent successfully");
+      //echo("email sent successfully");
       // Send notification mail to contest admin.
       //$mail_subject = "New Contest User";
       //$mail_content = "username = " . $username . "\nOrganizationID = " .
