@@ -224,7 +224,7 @@ if (count($errors) <= 0) {
         $memcache->delete('lookup:username');
     }
     // Send confirmation mail to user.
-    $mail_subject = "AI Challenge!";
+    $mail_subject = "B2KI activation code";
     $activation_url = current_url();
     $activation_url = str_replace("process_registration.php",
                                   "account_confirmation.php",
@@ -232,7 +232,7 @@ if (count($errors) <= 0) {
     if (strlen($activation_url) < 5) {
       $activation_url = "http://aichallenge.org/account_confirmation.php";
     }
-    $mail_content = "Welcome to the B2ki AI contest!\r\n".
+    $mail_content = "Welcome to the B2KI AI challenge!\r\n".
                     "To activate your account click the link below:\r\n\r\n" .
                     $activation_url .
                     "?confirmation_code=" . $confirmation_code . "\r\n\r\n" .
@@ -244,7 +244,7 @@ if (count($errors) <= 0) {
     //var_dump($user_email);
     if ($send_email == 1 && strcmp($user_email, "donotsend") != 0) {
       //echo("really going to send email...");
-      $headers = 'From: no-reply@b2ki.science.uu.nl' . "\r\n" .
+      $headers = 'From: "B2KI Registration" <no-reply@b2ki.science.uu.nl>' . "\r\n" .
                    'Reply-To: s.t.timmer@uu.nl' . "\r\n" .
                    'X-Mailer: PHP/' . phpversion();
 
