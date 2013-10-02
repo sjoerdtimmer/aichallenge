@@ -63,8 +63,7 @@ if($server_info["submissions_open"]) { ?>
     <td>Email Address</td>
     <td>&nbsp;</td>
     <td><input name="user_email" type="text" id="user_email" value="<?php echo isset($_POST['user_email'])?htmlentities($_POST['user_email'], ENT_COMPAT, "UTF-8"):'' ?>" /></td>
-    <td>You can use only your @students.uu.nl mail address. You will use this address to confirm
-        the creation of your account.</td>
+    <td>Only <font color="ff0000">@students.uu.nl</font> addresses allowed! Activation code will be emailed to you.</td>
   </tr>
   <!-- Status -->
   <tr style="display:none">
