@@ -149,7 +149,7 @@ if($server_info["submissions_open"]) { ?>
       your profile. Optional</td>
   </tr>
   </tr>
-  <tr><td colspan="4" style="color:red">By submitting this form, you implicity agree to <a href="rules.php">these rules</a>.</td></tr>
+  <!--<tr><td colspan="4" style="color:red">By submitting this form, you implicity agree to <a href="rules.php">these rules</a>.</td></tr>-->
   <!-- Submit -->
   <tr>
     <td>&nbsp;</td>
