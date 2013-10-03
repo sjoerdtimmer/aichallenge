@@ -230,7 +230,7 @@ if (count($errors) <= 0) {
                                   "account_confirmation.php",
                                   $activation_url);
     if (strlen($activation_url) < 5) {
-      $activation_url = "http://aichallenge.org/account_confirmation.php";
+      $activation_url = "http://b2ki.science.uu.nl/account_confirmation.php";
     }
     $mail_content = "Welcome to the B2KI AI challenge!\r\n".
                     "To activate your account click the link below:\r\n\r\n" .
