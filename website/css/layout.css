@@ -5,7 +5,7 @@ html {
 
 body {
     background: #fff;
-    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#fff', endColorstr='#ddd', GradientType=0); /* for IE */
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffff', endColorstr='#dddddd', GradientType=0); /* for IE */
     background: -webkit-gradient(linear, left top, 0% 100%, from(#fff), to(#ddd));
     background: -moz-linear-gradient(top,  #fff,  #ddd);
     background: -o-linear-gradient(#fff,#ddd);

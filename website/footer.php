@@ -2,12 +2,6 @@
                 </div>
                 <div class="right">
                     <?php include("menu.php"); ?>
-                    <div id="sponsor_bar">
-                        <p>Thanks to additional server sponsor</p>
-                        <a href="http://www.tiw.nl/">
-                            <img src="images/totaalnet.png" alt="Totaalnet" />
-                        </a>
-                    </div>
                 </div>
             </div>
             <div class="columns">
