@@ -50,25 +50,25 @@ This check will come in handy later in the tutorial, so we will make a function 
 <div class="tab_sync">
 <div class="tab_content" title="Python">
 
-    :::python
-        def do_turn(self, ants):
-            # track all moves, prevent collisions
-            orders = {}
-            def do_move_direction(loc, direction):
-                new_loc = ants.destination(loc, direction)
-                if (ants.unoccupied(new_loc) and new_loc not in orders):
-                    ants.issue_order((loc, direction))
-                    orders[new_loc] = loc
-                    return True
-                else:
-                    return False
+<div class="codehilite"><pre>    <span class="k">def</span> <span class="nf">do_turn</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ants</span><span class="p">):</span>
+        <span class="c"># track all moves, prevent collisions</span>
+        <span class="n">orders</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="k">def</span> <span class="nf">do_move_direction</span><span class="p">(</span><span class="n">loc</span><span class="p">,</span> <span class="n">direction</span><span class="p">):</span>
+            <span class="n">new_loc</span> <span class="o">=</span> <span class="n">ants</span><span class="o">.</span><span class="n">destination</span><span class="p">(</span><span class="n">loc</span><span class="p">,</span> <span class="n">direction</span><span class="p">)</span>
+            <span class="k">if</span> <span class="p">(</span><span class="n">ants</span><span class="o">.</span><span class="n">unoccupied</span><span class="p">(</span><span class="n">new_loc</span><span class="p">)</span> <span class="ow">and</span> <span class="n">new_loc</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">orders</span><span class="p">):</span>
+                <span class="n">ants</span><span class="o">.</span><span class="n">issue_order</span><span class="p">((</span><span class="n">loc</span><span class="p">,</span> <span class="n">direction</span><span class="p">))</span>
+                <span class="n">orders</span><span class="p">[</span><span class="n">new_loc</span><span class="p">]</span> <span class="o">=</span> <span class="n">loc</span>
+                <span class="k">return</span> <span class="bp">True</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="k">return</span> <span class="bp">False</span>
 
-            # default move
-            for ant_loc in ants.my_ants():
-                directions = ('n','e','s','w')
-                for direction in directions:
-                    if do_move_direction(ant_loc, direction):
-                        break
+        <span class="c"># default move</span>
+        <span class="k">for</span> <span class="n">ant_loc</span> <span class="ow">in</span> <span class="n">ants</span><span class="o">.</span><span class="n">my_ants</span><span class="p">():</span>
+            <span class="n">directions</span> <span class="o">=</span> <span class="p">(</span><span class="s">&#39;n&#39;</span><span class="p">,</span><span class="s">&#39;e&#39;</span><span class="p">,</span><span class="s">&#39;s&#39;</span><span class="p">,</span><span class="s">&#39;w&#39;</span><span class="p">)</span>
+            <span class="k">for</span> <span class="n">direction</span> <span class="ow">in</span> <span class="n">directions</span><span class="p">:</span>
+                <span class="k">if</span> <span class="n">do_move_direction</span><span class="p">(</span><span class="n">ant_loc</span><span class="p">,</span> <span class="n">direction</span><span class="p">):</span>
+                    <span class="k">break</span>
+</pre></div>
 
 
 *(Note: Make sure you get the indentation correct.  In Python, indentation determines the code blocks or scope, so it has to be correct.)*
