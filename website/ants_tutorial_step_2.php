@@ -44,15 +44,15 @@ To track information about which food item is already being gathered by an ant, 
 Create the following function after the `do_move_direction` function:
 
 
-    :::python
-            targets = {}
-            def do_move_location(loc, dest):
-                directions = ants.direction(loc, dest)
-                for direction in directions:
-                    if do_move_direction(loc, direction):
-                        targets[dest] = loc
-                        return True
-                return False
+<div class="codehilite"><pre>        <span class="n">targets</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="k">def</span> <span class="nf">do_move_location</span><span class="p">(</span><span class="n">loc</span><span class="p">,</span> <span class="n">dest</span><span class="p">):</span>
+            <span class="n">directions</span> <span class="o">=</span> <span class="n">ants</span><span class="o">.</span><span class="n">direction</span><span class="p">(</span><span class="n">loc</span><span class="p">,</span> <span class="n">dest</span><span class="p">)</span>
+            <span class="k">for</span> <span class="n">direction</span> <span class="ow">in</span> <span class="n">directions</span><span class="p">:</span>
+                <span class="k">if</span> <span class="n">do_move_direction</span><span class="p">(</span><span class="n">loc</span><span class="p">,</span> <span class="n">direction</span><span class="p">):</span>
+                    <span class="n">targets</span><span class="p">[</span><span class="n">dest</span><span class="p">]</span> <span class="o">=</span> <span class="n">loc</span>
+                    <span class="k">return</span> <span class="bp">True</span>
+            <span class="k">return</span> <span class="bp">False</span>
+</pre></div>
 
 
 Make sure this function has the same indentation as the `do_move_direction` function.  The `targets` dictionary tracks our food targets and ants.  We are using another starter bot function to help us:
@@ -62,17 +62,17 @@ Make sure this function has the same indentation as the `do_move_direction` func
 Now replace the default move with this:
 
 
-    :::python
-            # find close food
-            ant_dist = []
-            for food_loc in ants.food():
-                for ant_loc in ants.my_ants():
-                    dist = ants.distance(ant_loc, food_loc)
-                    ant_dist.append((dist, ant_loc, food_loc))
-            ant_dist.sort()
-            for dist, ant_loc, food_loc in ant_dist:
-                if food_loc not in targets and ant_loc not in targets.values():
-                    do_move_location(ant_loc, food_loc)
+<div class="codehilite"><pre>        <span class="c"># find close food</span>
+        <span class="n">ant_dist</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">food_loc</span> <span class="ow">in</span> <span class="n">ants</span><span class="o">.</span><span class="n">food</span><span class="p">():</span>
+            <span class="k">for</span> <span class="n">ant_loc</span> <span class="ow">in</span> <span class="n">ants</span><span class="o">.</span><span class="n">my_ants</span><span class="p">():</span>
+                <span class="n">dist</span> <span class="o">=</span> <span class="n">ants</span><span class="o">.</span><span class="n">distance</span><span class="p">(</span><span class="n">ant_loc</span><span class="p">,</span> <span class="n">food_loc</span><span class="p">)</span>
+                <span class="n">ant_dist</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">dist</span><span class="p">,</span> <span class="n">ant_loc</span><span class="p">,</span> <span class="n">food_loc</span><span class="p">))</span>
+        <span class="n">ant_dist</span><span class="o">.</span><span class="n">sort</span><span class="p">()</span>
+        <span class="k">for</span> <span class="n">dist</span><span class="p">,</span> <span class="n">ant_loc</span><span class="p">,</span> <span class="n">food_loc</span> <span class="ow">in</span> <span class="n">ant_dist</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">food_loc</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">targets</span> <span class="ow">and</span> <span class="n">ant_loc</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">targets</span><span class="o">.</span><span class="n">values</span><span class="p">():</span>
+                <span class="n">do_move_location</span><span class="p">(</span><span class="n">ant_loc</span><span class="p">,</span> <span class="n">food_loc</span><span class="p">)</span>
+</pre></div>
 
 
 Here we have a list, `ant_dist`, which will store every ant to food combination and the distance as a tuple of `(dist, ant_loc, food_loc)`.  The list is built by a nested loop structure to give us every combination.  Next, we sort the list.  Python lists come with some handy functions to do the sorting for us.  To order a tuple, python will compare the first values of each tuple first, then if they are the same, move on to the second value and so forth.  This is why we stored the distance as the first value, to make sure the shortest distances are first in the list.
@@ -86,55 +86,55 @@ Next we loop through the sorted list and check to see if we have any free ants t
 Create the following class "Route" in a new file called "Route.java":
 
 
-    :::java
-    /**
-     * Represents a route from one tile to another.
-     */
-    public class Route implements Comparable<Route> {
-        private final Tile start;
+<div class="codehilite"><pre><span class="cm">/**</span>
+<span class="cm"> * Represents a route from one tile to another.</span>
+<span class="cm"> */</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">Route</span> <span class="kd">implements</span> <span class="n">Comparable</span><span class="o">&lt;</span><span class="n">Route</span><span class="o">&gt;</span> <span class="o">{</span>
+    <span class="kd">private</span> <span class="kd">final</span> <span class="n">Tile</span> <span class="n">start</span><span class="o">;</span>
 
-        private final Tile end;
+    <span class="kd">private</span> <span class="kd">final</span> <span class="n">Tile</span> <span class="n">end</span><span class="o">;</span>
 
-        private final int distance;
+    <span class="kd">private</span> <span class="kd">final</span> <span class="kt">int</span> <span class="n">distance</span><span class="o">;</span>
 
-        public Route(Tile start, Tile end, int distance) {
-            this.start = start;
-            this.end = end;
-            this.distance = distance;
-        }
+    <span class="kd">public</span> <span class="nf">Route</span><span class="o">(</span><span class="n">Tile</span> <span class="n">start</span><span class="o">,</span> <span class="n">Tile</span> <span class="n">end</span><span class="o">,</span> <span class="kt">int</span> <span class="n">distance</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">start</span> <span class="o">=</span> <span class="n">start</span><span class="o">;</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">end</span> <span class="o">=</span> <span class="n">end</span><span class="o">;</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">distance</span> <span class="o">=</span> <span class="n">distance</span><span class="o">;</span>
+    <span class="o">}</span>
 
-        public Tile getStart() {
-            return start;
-        }
+    <span class="kd">public</span> <span class="n">Tile</span> <span class="nf">getStart</span><span class="o">()</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="n">start</span><span class="o">;</span>
+    <span class="o">}</span>
 
-        public Tile getEnd() {
-            return end;
-        }
+    <span class="kd">public</span> <span class="n">Tile</span> <span class="nf">getEnd</span><span class="o">()</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="n">end</span><span class="o">;</span>
+    <span class="o">}</span>
 
-        public int getDistance() {
-            return distance;
-        }
+    <span class="kd">public</span> <span class="kt">int</span> <span class="nf">getDistance</span><span class="o">()</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="n">distance</span><span class="o">;</span>
+    <span class="o">}</span>
 
-        @Override
-        public int compareTo(Route route) {
-            return distance - route.distance;
-        }
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="kt">int</span> <span class="nf">compareTo</span><span class="o">(</span><span class="n">Route</span> <span class="n">route</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="n">distance</span> <span class="o">-</span> <span class="n">route</span><span class="o">.</span><span class="na">distance</span><span class="o">;</span>
+    <span class="o">}</span>
 
-        @Override
-        public int hashCode() {
-            return start.hashCode() * Ants.MAX_MAP_SIZE * Ants.MAX_MAP_SIZE + end.hashCode();
-        }
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="kt">int</span> <span class="nf">hashCode</span><span class="o">()</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="n">start</span><span class="o">.</span><span class="na">hashCode</span><span class="o">()</span> <span class="o">*</span> <span class="n">Ants</span><span class="o">.</span><span class="na">MAX_MAP_SIZE</span> <span class="o">*</span> <span class="n">Ants</span><span class="o">.</span><span class="na">MAX_MAP_SIZE</span> <span class="o">+</span> <span class="n">end</span><span class="o">.</span><span class="na">hashCode</span><span class="o">();</span>
+    <span class="o">}</span>
 
-        @Override
-        public boolean equals(Object o) {
-            boolean result = false;
-            if (o instanceof Route) {
-                Route route = (Route)o;
-                result = start.equals(route.start) && end.equals(route.end);
-            }
-            return result;
-        }
-    }
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="kt">boolean</span> <span class="nf">equals</span><span class="o">(</span><span class="n">Object</span> <span class="n">o</span><span class="o">)</span> <span class="o">{</span>
+        <span class="kt">boolean</span> <span class="n">result</span> <span class="o">=</span> <span class="kc">false</span><span class="o">;</span>
+        <span class="k">if</span> <span class="o">(</span><span class="n">o</span> <span class="k">instanceof</span> <span class="n">Route</span><span class="o">)</span> <span class="o">{</span>
+            <span class="n">Route</span> <span class="n">route</span> <span class="o">=</span> <span class="o">(</span><span class="n">Route</span><span class="o">)</span><span class="n">o</span><span class="o">;</span>
+            <span class="n">result</span> <span class="o">=</span> <span class="n">start</span><span class="o">.</span><span class="na">equals</span><span class="o">(</span><span class="n">route</span><span class="o">.</span><span class="na">start</span><span class="o">)</span> <span class="o">&amp;&amp;</span> <span class="n">end</span><span class="o">.</span><span class="na">equals</span><span class="o">(</span><span class="n">route</span><span class="o">.</span><span class="na">end</span><span class="o">);</span>
+        <span class="o">}</span>
+        <span class="k">return</span> <span class="n">result</span><span class="o">;</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</pre></div>
 
 
 This is a basic class the implements the idea of a tuple or pair.  We add some getter functions (`getStart`, `getEnd`) and some function to make sure it behaves nicely for sorting and using inside other data structures (`compareTo`, `hashCode`, `equals`).
@@ -142,18 +142,18 @@ This is a basic class the implements the idea of a tuple or pair.  We add some g
 Add the following new function to the MyBot.java file after the `doMoveDirection` function:
 
 
-    :::java
-        private boolean doMoveLocation(Tile antLoc, Tile destLoc) {
-            Ants ants = getAnts();
-            // Track targets to prevent 2 ants to the same location
-            List<Aim> directions = ants.getDirections(antLoc, destLoc);
-            for (Aim direction : directions) {
-                if (doMoveDirection(antLoc, direction)) {
-                    return true;
-                }
-            }
-            return false;
-        }
+<div class="codehilite"><pre>    <span class="kd">private</span> <span class="kt">boolean</span> <span class="nf">doMoveLocation</span><span class="o">(</span><span class="n">Tile</span> <span class="n">antLoc</span><span class="o">,</span> <span class="n">Tile</span> <span class="n">destLoc</span><span class="o">)</span> <span class="o">{</span>
+        <span class="n">Ants</span> <span class="n">ants</span> <span class="o">=</span> <span class="n">getAnts</span><span class="o">();</span>
+        <span class="c1">// Track targets to prevent 2 ants to the same location</span>
+        <span class="n">List</span><span class="o">&lt;</span><span class="n">Aim</span><span class="o">&gt;</span> <span class="n">directions</span> <span class="o">=</span> <span class="n">ants</span><span class="o">.</span><span class="na">getDirections</span><span class="o">(</span><span class="n">antLoc</span><span class="o">,</span> <span class="n">destLoc</span><span class="o">);</span>
+        <span class="k">for</span> <span class="o">(</span><span class="n">Aim</span> <span class="n">direction</span> <span class="o">:</span> <span class="n">directions</span><span class="o">)</span> <span class="o">{</span>
+            <span class="k">if</span> <span class="o">(</span><span class="n">doMoveDirection</span><span class="o">(</span><span class="n">antLoc</span><span class="o">,</span> <span class="n">direction</span><span class="o">))</span> <span class="o">{</span>
+                <span class="k">return</span> <span class="kc">true</span><span class="o">;</span>
+            <span class="o">}</span>
+        <span class="o">}</span>
+        <span class="k">return</span> <span class="kc">false</span><span class="o">;</span>
+    <span class="o">}</span>
+</pre></div>
 
 
 This function will take an ant and a target location, then attempt to do the move.  It is using the `doMoveDirection` from the last step, so it will already make sure we don't step on our own ants.
@@ -161,32 +161,32 @@ This function will take an ant and a target location, then attempt to do the mov
 Replace the default move with the following code:
 
 
-    :::java
-        @Override
-        public void doTurn() {
-            Ants ants = getAnts();
-            orders.clear();
-            Map<Tile, Tile> foodTargets = new HashMap<Tile, Tile>();
+<div class="codehilite"><pre>    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">doTurn</span><span class="o">()</span> <span class="o">{</span>
+        <span class="n">Ants</span> <span class="n">ants</span> <span class="o">=</span> <span class="n">getAnts</span><span class="o">();</span>
+        <span class="n">orders</span><span class="o">.</span><span class="na">clear</span><span class="o">();</span>
+        <span class="n">Map</span><span class="o">&lt;</span><span class="n">Tile</span><span class="o">,</span> <span class="n">Tile</span><span class="o">&gt;</span> <span class="n">foodTargets</span> <span class="o">=</span> <span class="k">new</span> <span class="n">HashMap</span><span class="o">&lt;</span><span class="n">Tile</span><span class="o">,</span> <span class="n">Tile</span><span class="o">&gt;();</span>
 
-            // find close food
-            List<Route> foodRoutes = new ArrayList<Route>();
-            TreeSet<Tile> sortedFood = new TreeSet<Tile>(ants.getFoodTiles());
-            TreeSet<Tile> sortedAnts = new TreeSet<Tile>(ants.getMyAnts());
-            for (Tile foodLoc : sortedFood) {
-                for (Tile antLoc : sortedAnts) {
-                    int distance = ants.getDistance(antLoc, foodLoc);
-                    Route route = new Route(antLoc, foodLoc, distance);
-                    foodRoutes.add(route);
-                }
-            }
-            Collections.sort(foodRoutes);
-            for (Route route : foodRoutes) {
-                if (!foodTargets.containsKey(route.getEnd())
-                        && !foodTargets.containsValue(route.getStart())
-                        && doMoveLocation(route.getStart(), route.getEnd())) {
-                    foodTargets.put(route.getEnd(), route.getStart());
-                }
-            }
+        <span class="c1">// find close food</span>
+        <span class="n">List</span><span class="o">&lt;</span><span class="n">Route</span><span class="o">&gt;</span> <span class="n">foodRoutes</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ArrayList</span><span class="o">&lt;</span><span class="n">Route</span><span class="o">&gt;();</span>
+        <span class="n">TreeSet</span><span class="o">&lt;</span><span class="n">Tile</span><span class="o">&gt;</span> <span class="n">sortedFood</span> <span class="o">=</span> <span class="k">new</span> <span class="n">TreeSet</span><span class="o">&lt;</span><span class="n">Tile</span><span class="o">&gt;(</span><span class="n">ants</span><span class="o">.</span><span class="na">getFoodTiles</span><span class="o">());</span>
+        <span class="n">TreeSet</span><span class="o">&lt;</span><span class="n">Tile</span><span class="o">&gt;</span> <span class="n">sortedAnts</span> <span class="o">=</span> <span class="k">new</span> <span class="n">TreeSet</span><span class="o">&lt;</span><span class="n">Tile</span><span class="o">&gt;(</span><span class="n">ants</span><span class="o">.</span><span class="na">getMyAnts</span><span class="o">());</span>
+        <span class="k">for</span> <span class="o">(</span><span class="n">Tile</span> <span class="n">foodLoc</span> <span class="o">:</span> <span class="n">sortedFood</span><span class="o">)</span> <span class="o">{</span>
+            <span class="k">for</span> <span class="o">(</span><span class="n">Tile</span> <span class="n">antLoc</span> <span class="o">:</span> <span class="n">sortedAnts</span><span class="o">)</span> <span class="o">{</span>
+                <span class="kt">int</span> <span class="n">distance</span> <span class="o">=</span> <span class="n">ants</span><span class="o">.</span><span class="na">getDistance</span><span class="o">(</span><span class="n">antLoc</span><span class="o">,</span> <span class="n">foodLoc</span><span class="o">);</span>
+                <span class="n">Route</span> <span class="n">route</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Route</span><span class="o">(</span><span class="n">antLoc</span><span class="o">,</span> <span class="n">foodLoc</span><span class="o">,</span> <span class="n">distance</span><span class="o">);</span>
+                <span class="n">foodRoutes</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="n">route</span><span class="o">);</span>
+            <span class="o">}</span>
+        <span class="o">}</span>
+        <span class="n">Collections</span><span class="o">.</span><span class="na">sort</span><span class="o">(</span><span class="n">foodRoutes</span><span class="o">);</span>
+        <span class="k">for</span> <span class="o">(</span><span class="n">Route</span> <span class="n">route</span> <span class="o">:</span> <span class="n">foodRoutes</span><span class="o">)</span> <span class="o">{</span>
+            <span class="k">if</span> <span class="o">(!</span><span class="n">foodTargets</span><span class="o">.</span><span class="na">containsKey</span><span class="o">(</span><span class="n">route</span><span class="o">.</span><span class="na">getEnd</span><span class="o">())</span>
+                    <span class="o">&amp;&amp;</span> <span class="o">!</span><span class="n">foodTargets</span><span class="o">.</span><span class="na">containsValue</span><span class="o">(</span><span class="n">route</span><span class="o">.</span><span class="na">getStart</span><span class="o">())</span>
+                    <span class="o">&amp;&amp;</span> <span class="n">doMoveLocation</span><span class="o">(</span><span class="n">route</span><span class="o">.</span><span class="na">getStart</span><span class="o">(),</span> <span class="n">route</span><span class="o">.</span><span class="na">getEnd</span><span class="o">()))</span> <span class="o">{</span>
+                <span class="n">foodTargets</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="n">route</span><span class="o">.</span><span class="na">getEnd</span><span class="o">(),</span> <span class="n">route</span><span class="o">.</span><span class="na">getStart</span><span class="o">());</span>
+            <span class="o">}</span>
+        <span class="o">}</span>
+</pre></div>
 
 
 Here we build a list of every ant to food combination and store the distance.  Then we sort the ArrayList so we get the shortest distances first when looping through the routes.  Next we loop through all possible combinations and if the ant has not been ordered and the food has not been targeted yet, we issue a new order.  We also save a list of target locations to make sure only 1 ant is going for a food item.
