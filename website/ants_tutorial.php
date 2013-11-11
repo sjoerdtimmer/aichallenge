@@ -103,8 +103,8 @@ require_once('header.php');
 
 Create a file called "tutorial.cmd".
 
-    :::text
-    C:\aichallenge>notepad tutorial.cmd
+<div class="codehilite"><pre>C:\aichallenge&gt;notepad tutorial.cmd
+</pre></div>
 
 </div>
 
@@ -112,13 +112,13 @@ Create a file called "tutorial.cmd".
 
 Create a file called "tutorial.sh".
 
-    :::text
-    user@localhost:~$ gedit tutorial.sh
+<div class="codehilite"><pre>user@localhost:~$ gedit tutorial.sh
+</pre></div>
 
 After editing the file, make it executable:
 
-    :::text
-    user@localhost:~$ chmod u+x tutorial.sh
+<div class="codehilite"><pre>user@localhost:~$ chmod u+x tutorial.sh
+</pre></div>
 
 </div>
 
@@ -128,20 +128,20 @@ After editing the file, make it executable:
 <div class="tab_sync">
 <div class="tab_content" title="Python">
 
-    :::text
-    python tools/playgame.py "python MyBot.py" "python tools/sample_bots/python/HunterBot.py" --map_file tools/maps/example/tutorial1.map --log_dir game_logs --turns 60 --scenario --food none --player_seed 7 --verbose -e
+<div class="codehilite"><pre>python tools/playgame.py &quot;python MyBot.py&quot; &quot;python tools/sample_bots/python/HunterBot.py&quot; --map_file tools/maps/example/tutorial1.map --log_dir game_logs --turns 60 --scenario --food none --player_seed 7 --verbose -e
+</pre></div>
 
 </div>
 
 <div class="tab_content" title="Java">
 
-    :::text
-    python tools/playgame.py "java -jar MyBot.jar" "python tools/sample_bots/python/HunterBot.py" --map_file tools/maps/example/tutorial1.map --log_dir game_logs --turns 60 --scenario --food none --player_seed 7 --verbose -e
-
+<div class="codehilite"><pre>python tools/playgame.py &quot;java -jar MyBot.jar&quot; &quot;python tools/sample_bots/python/HunterBot.py&quot; --map_file tools/maps/example/tutorial1.map --log_dir game_logs --turns 60 --scenario --food none --player_seed 7 --verbose -e
+</pre></div>
 
 The java bot needs to be compiled into a jar file for us to use.  You can run the following command to create the file:
 
-    make
+<div class="codehilite"><pre><span class="n">make</span>
+</pre></div>
 
 </div>
 
@@ -165,15 +165,15 @@ The java bot needs to be compiled into a jar file for us to use.  You can run th
 <div class="tab_sync">
 <div class="tab_content" title="Windows">
 
-    :::text
-    C:\aichallenge>tutorial
+<div class="codehilite"><pre>C:\aichallenge&gt;tutorial
+</pre></div>
 
 </div>
 
 <div class="tab_content" title="Linux">
 
-    :::text
-    user@localhost:~$ ./tutorial.sh
+<div class="codehilite"><pre>user@localhost:~$ ./tutorial.sh
+</pre></div>
 
 </div>
 
