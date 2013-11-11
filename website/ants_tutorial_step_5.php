@@ -32,9 +32,10 @@ require_once('header.php');
 Put this code in the `do_setup` method:
 
 
-    :::python
-        def do_setup(self, ants):
-            self.hills = []
+<div class="codehilite"><pre>    <span class="k">def</span> <span class="nf">do_setup</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ants</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">hills</span> <span class="o">=</span> <span class="p">[]</span>
+</pre></div>
+
 
 
 This will be the list of all hills we have found.
@@ -42,20 +43,20 @@ This will be the list of all hills we have found.
 Put the following code after the food gathering section and before the map exploration section.
 
 
-    :::python
-            # attack hills
-            for hill_loc, hill_owner in ants.enemy_hills():
-                if hill_loc not in self.hills:
-                    self.hills.append(hill_loc)        
-            ant_dist = []
-            for hill_loc in self.hills:
-                for ant_loc in ants.my_ants():
-                    if ant_loc not in orders.values():
-                        dist = ants.distance(ant_loc, hill_loc)
-                        ant_dist.append((dist, ant_loc, hill_loc))
-            ant_dist.sort()
-            for dist, ant_loc, hill_loc in ant_dist:
-                do_move_location(ant_loc, hill_loc)
+<div class="codehilite"><pre>        <span class="c"># attack hills</span>
+        <span class="k">for</span> <span class="n">hill_loc</span><span class="p">,</span> <span class="n">hill_owner</span> <span class="ow">in</span> <span class="n">ants</span><span class="o">.</span><span class="n">enemy_hills</span><span class="p">():</span>
+            <span class="k">if</span> <span class="n">hill_loc</span> <span class="ow">not</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">hills</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">hills</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">hill_loc</span><span class="p">)</span>        
+        <span class="n">ant_dist</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">hill_loc</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">hills</span><span class="p">:</span>
+            <span class="k">for</span> <span class="n">ant_loc</span> <span class="ow">in</span> <span class="n">ants</span><span class="o">.</span><span class="n">my_ants</span><span class="p">():</span>
+                <span class="k">if</span> <span class="n">ant_loc</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">orders</span><span class="o">.</span><span class="n">values</span><span class="p">():</span>
+                    <span class="n">dist</span> <span class="o">=</span> <span class="n">ants</span><span class="o">.</span><span class="n">distance</span><span class="p">(</span><span class="n">ant_loc</span><span class="p">,</span> <span class="n">hill_loc</span><span class="p">)</span>
+                    <span class="n">ant_dist</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">dist</span><span class="p">,</span> <span class="n">ant_loc</span><span class="p">,</span> <span class="n">hill_loc</span><span class="p">))</span>
+        <span class="n">ant_dist</span><span class="o">.</span><span class="n">sort</span><span class="p">()</span>
+        <span class="k">for</span> <span class="n">dist</span><span class="p">,</span> <span class="n">ant_loc</span><span class="p">,</span> <span class="n">hill_loc</span> <span class="ow">in</span> <span class="n">ant_dist</span><span class="p">:</span>
+            <span class="n">do_move_location</span><span class="p">(</span><span class="n">ant_loc</span><span class="p">,</span> <span class="n">hill_loc</span><span class="p">)</span>
+</pre></div>
 
 
 In the first part, we loop through all enemy hills, and if we haven't seen it before, we add it to the list.
@@ -71,8 +72,8 @@ Last, we sort the list by closest distance first, then send each ant in to attac
 Put this class level variable declaration with the others:
 
 
-    :::java
-        private Set<Tile> enemyHills = new HashSet<Tile>();
+<div class="codehilite"><pre>    <span class="kd">private</span> <span class="n">Set</span><span class="o">&lt;</span><span class="n">Tile</span><span class="o">&gt;</span> <span class="n">enemyHills</span> <span class="o">=</span> <span class="k">new</span> <span class="n">HashSet</span><span class="o">&lt;</span><span class="n">Tile</span><span class="o">&gt;();</span>
+</pre></div>
 
 
 This will be the list of all enemy hills we have found.
@@ -80,28 +81,29 @@ This will be the list of all enemy hills we have found.
 Add the following code below the food gathering code, and above the exploring code:
 
 
-    :::java
-            // add new hills to set
-            for (Tile enemyHill : ants.getEnemyHills()) {
-                if (!enemyHills.contains(enemyHill)) {
-                    enemyHills.add(enemyHill);
-                }
-            }
-            // attack hills
-            List<Route> hillRoutes = new ArrayList<Route>();
-            for (Tile hillLoc : enemyHills) {
-                for (Tile antLoc : sortedAnts) {
-                    if (!orders.containsValue(antLoc)) {
-                        int distance = ants.getDistance(antLoc, hillLoc);
-                        Route route = new Route(antLoc, hillLoc, distance);
-                        hillRoutes.add(route);
-                    }
-                }
-            }
-            Collections.sort(hillRoutes);
-            for (Route route : hillRoutes) {
-                doMoveLocation(route.getStart(), route.getEnd());
-            }
+<div class="codehilite"><pre>        <span class="c1">// add new hills to set</span>
+        <span class="k">for</span> <span class="o">(</span><span class="n">Tile</span> <span class="n">enemyHill</span> <span class="o">:</span> <span class="n">ants</span><span class="o">.</span><span class="na">getEnemyHills</span><span class="o">())</span> <span class="o">{</span>
+            <span class="k">if</span> <span class="o">(!</span><span class="n">enemyHills</span><span class="o">.</span><span class="na">contains</span><span class="o">(</span><span class="n">enemyHill</span><span class="o">))</span> <span class="o">{</span>
+                <span class="n">enemyHills</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="n">enemyHill</span><span class="o">);</span>
+            <span class="o">}</span>
+        <span class="o">}</span>
+        <span class="c1">// attack hills</span>
+        <span class="n">List</span><span class="o">&lt;</span><span class="n">Route</span><span class="o">&gt;</span> <span class="n">hillRoutes</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ArrayList</span><span class="o">&lt;</span><span class="n">Route</span><span class="o">&gt;();</span>
+        <span class="k">for</span> <span class="o">(</span><span class="n">Tile</span> <span class="n">hillLoc</span> <span class="o">:</span> <span class="n">enemyHills</span><span class="o">)</span> <span class="o">{</span>
+            <span class="k">for</span> <span class="o">(</span><span class="n">Tile</span> <span class="n">antLoc</span> <span class="o">:</span> <span class="n">sortedAnts</span><span class="o">)</span> <span class="o">{</span>
+                <span class="k">if</span> <span class="o">(!</span><span class="n">orders</span><span class="o">.</span><span class="na">containsValue</span><span class="o">(</span><span class="n">antLoc</span><span class="o">))</span> <span class="o">{</span>
+                    <span class="kt">int</span> <span class="n">distance</span> <span class="o">=</span> <span class="n">ants</span><span class="o">.</span><span class="na">getDistance</span><span class="o">(</span><span class="n">antLoc</span><span class="o">,</span> <span class="n">hillLoc</span><span class="o">);</span>
+                    <span class="n">Route</span> <span class="n">route</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Route</span><span class="o">(</span><span class="n">antLoc</span><span class="o">,</span> <span class="n">hillLoc</span><span class="o">,</span> <span class="n">distance</span><span class="o">);</span>
+                    <span class="n">hillRoutes</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="n">route</span><span class="o">);</span>
+                <span class="o">}</span>
+            <span class="o">}</span>
+        <span class="o">}</span>
+        <span class="n">Collections</span><span class="o">.</span><span class="na">sort</span><span class="o">(</span><span class="n">hillRoutes</span><span class="o">);</span>
+        <span class="k">for</span> <span class="o">(</span><span class="n">Route</span> <span class="n">route</span> <span class="o">:</span> <span class="n">hillRoutes</span><span class="o">)</span> <span class="o">{</span>
+            <span class="n">doMoveLocation</span><span class="o">(</span><span class="n">route</span><span class="o">.</span><span class="na">getStart</span><span class="o">(),</span> <span class="n">route</span><span class="o">.</span><span class="na">getEnd</span><span class="o">());</span>
+        <span class="o">}</span>
+</pre></div>
+
 
 
 In the first part, we loop through all enemy hills, and if we haven't seen it before, we add it to the list.

@@ -87,36 +87,36 @@ The `orders` dictionary is used to track what moves we have issued.  In the if s
 We'll trim down the starter bots comments and put the new code in:
 
 
-    :::java
-        private Map<Tile, Tile> orders = new HashMap<Tile, Tile>();
+<div class="codehilite"><pre>    <span class="kd">private</span> <span class="n">Map</span><span class="o">&lt;</span><span class="n">Tile</span><span class="o">,</span> <span class="n">Tile</span><span class="o">&gt;</span> <span class="n">orders</span> <span class="o">=</span> <span class="k">new</span> <span class="n">HashMap</span><span class="o">&lt;</span><span class="n">Tile</span><span class="o">,</span> <span class="n">Tile</span><span class="o">&gt;();</span>
 
-        private boolean doMoveDirection(Tile antLoc, Aim direction) {
-            Ants ants = getAnts();
-            // Track all moves, prevent collisions
-            Tile newLoc = ants.getTile(antLoc, direction);
-            if (ants.getIlk(newLoc).isUnoccupied() && !orders.containsKey(newLoc)) {
-                ants.issueOrder(antLoc, direction);
-                orders.put(newLoc, antLoc);
-                return true;
-            } else {
-                return false;
-            }
-        }
+    <span class="kd">private</span> <span class="kt">boolean</span> <span class="nf">doMoveDirection</span><span class="o">(</span><span class="n">Tile</span> <span class="n">antLoc</span><span class="o">,</span> <span class="n">Aim</span> <span class="n">direction</span><span class="o">)</span> <span class="o">{</span>
+        <span class="n">Ants</span> <span class="n">ants</span> <span class="o">=</span> <span class="n">getAnts</span><span class="o">();</span>
+        <span class="c1">// Track all moves, prevent collisions</span>
+        <span class="n">Tile</span> <span class="n">newLoc</span> <span class="o">=</span> <span class="n">ants</span><span class="o">.</span><span class="na">getTile</span><span class="o">(</span><span class="n">antLoc</span><span class="o">,</span> <span class="n">direction</span><span class="o">);</span>
+        <span class="k">if</span> <span class="o">(</span><span class="n">ants</span><span class="o">.</span><span class="na">getIlk</span><span class="o">(</span><span class="n">newLoc</span><span class="o">).</span><span class="na">isUnoccupied</span><span class="o">()</span> <span class="o">&amp;&amp;</span> <span class="o">!</span><span class="n">orders</span><span class="o">.</span><span class="na">containsKey</span><span class="o">(</span><span class="n">newLoc</span><span class="o">))</span> <span class="o">{</span>
+            <span class="n">ants</span><span class="o">.</span><span class="na">issueOrder</span><span class="o">(</span><span class="n">antLoc</span><span class="o">,</span> <span class="n">direction</span><span class="o">);</span>
+            <span class="n">orders</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="n">newLoc</span><span class="o">,</span> <span class="n">antLoc</span><span class="o">);</span>
+            <span class="k">return</span> <span class="kc">true</span><span class="o">;</span>
+        <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
+            <span class="k">return</span> <span class="kc">false</span><span class="o">;</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
 
-        @Override
-        public void doTurn() {
-            Ants ants = getAnts();
-            orders.clear();
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">doTurn</span><span class="o">()</span> <span class="o">{</span>
+        <span class="n">Ants</span> <span class="n">ants</span> <span class="o">=</span> <span class="n">getAnts</span><span class="o">();</span>
+        <span class="n">orders</span><span class="o">.</span><span class="na">clear</span><span class="o">();</span>
 
-            //  default move
-            for (Tile myAnt : ants.getMyAnts()) {
-                for (Aim direction : Aim.values()) {
-                    if (doMoveDirection(myAnt, direction)) {
-                        break;
-                    }
-                }
-            }
-        }
+        <span class="c1">//  default move</span>
+        <span class="k">for</span> <span class="o">(</span><span class="n">Tile</span> <span class="n">myAnt</span> <span class="o">:</span> <span class="n">ants</span><span class="o">.</span><span class="na">getMyAnts</span><span class="o">())</span> <span class="o">{</span>
+            <span class="k">for</span> <span class="o">(</span><span class="n">Aim</span> <span class="n">direction</span> <span class="o">:</span> <span class="n">Aim</span><span class="o">.</span><span class="na">values</span><span class="o">())</span> <span class="o">{</span>
+                <span class="k">if</span> <span class="o">(</span><span class="n">doMoveDirection</span><span class="o">(</span><span class="n">myAnt</span><span class="o">,</span> <span class="n">direction</span><span class="o">))</span> <span class="o">{</span>
+                    <span class="k">break</span><span class="o">;</span>
+                <span class="o">}</span>
+            <span class="o">}</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
+</pre></div>
 
 
 The `doMoveDirection` function takes an ant location (a Tile object) and a direction (an Aim object of N, E, S or W) and tries to perform the move.  This function is located outside the `doTurn` function, so our reserved tiles HashMap is at the class level and we clear it for each turn.  We are using some predefined functions from the starter bot to help us:

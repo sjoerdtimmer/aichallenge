@@ -47,11 +47,10 @@ Next, at the end of our `doTurn` function, we'll check if an ant is still on a h
 
 Add this code just before the food gathering section:
 
-
-    :::python
-        # prevent stepping on own hill
-        for hill_loc in ants.my_hills():
-            orders[hill_loc] = None
+<div class="codehilite"><pre>    <span class="c"># prevent stepping on own hill</span>
+    <span class="k">for</span> <span class="n">hill_loc</span> <span class="ow">in</span> <span class="n">ants</span><span class="o">.</span><span class="n">my_hills</span><span class="p">():</span>
+        <span class="n">orders</span><span class="p">[</span><span class="n">hill_loc</span><span class="p">]</span> <span class="o">=</span> <span class="bp">None</span>
+</pre></div>
 
 
 The dummy entry doesn't need a from location, so we just set the value to `None`.
@@ -59,13 +58,13 @@ The dummy entry doesn't need a from location, so we just set the value to `None`
 Add this code after the food gathering section:
 
 
-    :::python
-        # unblock own hill
-        for hill_loc in ants.my_hills():
-            if hill_loc in ants.my_ants() and hill_loc not in orders.values():
-                for direction in ('s','e','w','n'):
-                    if do_move_direction(hill_loc, direction):
-                        break
+<div class="codehilite"><pre>    <span class="c"># unblock own hill</span>
+    <span class="k">for</span> <span class="n">hill_loc</span> <span class="ow">in</span> <span class="n">ants</span><span class="o">.</span><span class="n">my_hills</span><span class="p">():</span>
+        <span class="k">if</span> <span class="n">hill_loc</span> <span class="ow">in</span> <span class="n">ants</span><span class="o">.</span><span class="n">my_ants</span><span class="p">()</span> <span class="ow">and</span> <span class="n">hill_loc</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">orders</span><span class="o">.</span><span class="n">values</span><span class="p">():</span>
+            <span class="k">for</span> <span class="n">direction</span> <span class="ow">in</span> <span class="p">(</span><span class="s">&#39;s&#39;</span><span class="p">,</span><span class="s">&#39;e&#39;</span><span class="p">,</span><span class="s">&#39;w&#39;</span><span class="p">,</span><span class="s">&#39;n&#39;</span><span class="p">):</span>
+                <span class="k">if</span> <span class="n">do_move_direction</span><span class="p">(</span><span class="n">hill_loc</span><span class="p">,</span> <span class="n">direction</span><span class="p">):</span>
+                    <span class="k">break</span>
+</pre></div>
 
 
 Here we check if an ant is on our hill, and if so, we loop through all four directions trying to get it off.  Once we find a direction that works, we stop trying the other ones by using the `break` statement.  It's a good thing our helper function returns some useful information!
@@ -79,11 +78,11 @@ Here we check if an ant is on our hill, and if so, we loop through all four dire
 Add this to the top of the `doTurn` function (just after the foodTargets declaration):
 
 
-    :::java
-            // prevent stepping on own hill
-            for (Tile myHill : ants.getMyHills()) {
-                orders.put(myHill, null);
-            }
+<div class="codehilite"><pre>        <span class="c1">// prevent stepping on own hill</span>
+        <span class="k">for</span> <span class="o">(</span><span class="n">Tile</span> <span class="n">myHill</span> <span class="o">:</span> <span class="n">ants</span><span class="o">.</span><span class="na">getMyHills</span><span class="o">())</span> <span class="o">{</span>
+            <span class="n">orders</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="n">myHill</span><span class="o">,</span> <span class="kc">null</span><span class="o">);</span>
+        <span class="o">}</span>
+</pre></div>
 
 
 This will loop through all our hills and add them to the set of reserved tiles.  No ant will try to move onto the our hill now.
@@ -91,17 +90,17 @@ This will loop through all our hills and add them to the set of reserved tiles. 
 Add this after the loops to find close food:
 
 
-    :::java
-            // unblock hills
-            for (Tile myHill : ants.getMyHills()) {
-                if (ants.getMyAnts().contains(myHill) && !orders.containsValue(myHill)) {
-                    for (Aim direction : Aim.values()) {
-                        if (doMoveDirection(myHill, direction)) {
-                            break;
-                        }
-                    }
-                }
-            }
+<div class="codehilite"><pre>        <span class="c1">// unblock hills</span>
+        <span class="k">for</span> <span class="o">(</span><span class="n">Tile</span> <span class="n">myHill</span> <span class="o">:</span> <span class="n">ants</span><span class="o">.</span><span class="na">getMyHills</span><span class="o">())</span> <span class="o">{</span>
+            <span class="k">if</span> <span class="o">(</span><span class="n">ants</span><span class="o">.</span><span class="na">getMyAnts</span><span class="o">().</span><span class="na">contains</span><span class="o">(</span><span class="n">myHill</span><span class="o">)</span> <span class="o">&amp;&amp;</span> <span class="o">!</span><span class="n">orders</span><span class="o">.</span><span class="na">containsValue</span><span class="o">(</span><span class="n">myHill</span><span class="o">))</span> <span class="o">{</span>
+                <span class="k">for</span> <span class="o">(</span><span class="n">Aim</span> <span class="n">direction</span> <span class="o">:</span> <span class="n">Aim</span><span class="o">.</span><span class="na">values</span><span class="o">())</span> <span class="o">{</span>
+                    <span class="k">if</span> <span class="o">(</span><span class="n">doMoveDirection</span><span class="o">(</span><span class="n">myHill</span><span class="o">,</span> <span class="n">direction</span><span class="o">))</span> <span class="o">{</span>
+                        <span class="k">break</span><span class="o">;</span>
+                    <span class="o">}</span>
+                <span class="o">}</span>
+            <span class="o">}</span>
+        <span class="o">}</span>
+</pre></div>
 
 
 This will loop through all our hill locations.  If there is an ant there that does not have an order, we will try and send it one of the four directions.

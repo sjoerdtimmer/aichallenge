@@ -29,11 +29,12 @@ require_once('header.php');
 Put this code in the `do_setup` method of the bot.  You should replace the `pass` statement.  This code will only be run once after our bot learns the size of the map.  
 
 
-    :::python
-        self.unseen = []
-        for row in range(ants.rows):
-            for col in range(ants.cols):
-                self.unseen.append((row, col))
+<div class="codehilite"><pre>    <span class="bp">self</span><span class="o">.</span><span class="n">unseen</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">ants</span><span class="o">.</span><span class="n">rows</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">col</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">ants</span><span class="o">.</span><span class="n">cols</span><span class="p">):</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">unseen</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">row</span><span class="p">,</span> <span class="n">col</span><span class="p">))</span>
+</pre></div>
+
 
 
 Notice we are using `self.unseen`; `self` is a reference to our bot class and we will need to use it to reference our unseen list in the `do_turn` method.  We create a list with a nested loop for every combination of row and column values.  *(Note: this could be a large list and not very memory efficient.  This is just the easiest way to make the code look nice.  You'll probably want to try and use a different technique for a real bot.)*
@@ -41,21 +42,21 @@ Notice we are using `self.unseen`; `self` is a reference to our bot class and we
 Add the following code after the gather food section and before the unblocking hill section:
 
 
-    :::python
-        # explore unseen areas
-        for loc in self.unseen[:]:
-            if ants.visible(loc):
-                self.unseen.remove(loc)
-        for ant_loc in ants.my_ants():
-            if ant_loc not in orders.values():
-                unseen_dist = []
-                for unseen_loc in self.unseen:
-                    dist = ants.distance(ant_loc, unseen_loc)
-                    unseen_dist.append((dist, unseen_loc))
-                unseen_dist.sort()
-                for dist, unseen_loc in unseen_dist:
-                    if do_move_location(ant_loc, unseen_loc):
-                        break
+ <div class="codehilite"><pre>    <span class="c"># explore unseen areas</span>
+    <span class="k">for</span> <span class="n">loc</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">unseen</span><span class="p">[:]:</span>
+        <span class="k">if</span> <span class="n">ants</span><span class="o">.</span><span class="n">visible</span><span class="p">(</span><span class="n">loc</span><span class="p">):</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">unseen</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="n">loc</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">ant_loc</span> <span class="ow">in</span> <span class="n">ants</span><span class="o">.</span><span class="n">my_ants</span><span class="p">():</span>
+        <span class="k">if</span> <span class="n">ant_loc</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">orders</span><span class="o">.</span><span class="n">values</span><span class="p">():</span>
+            <span class="n">unseen_dist</span> <span class="o">=</span> <span class="p">[]</span>
+            <span class="k">for</span> <span class="n">unseen_loc</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">unseen</span><span class="p">:</span>
+                <span class="n">dist</span> <span class="o">=</span> <span class="n">ants</span><span class="o">.</span><span class="n">distance</span><span class="p">(</span><span class="n">ant_loc</span><span class="p">,</span> <span class="n">unseen_loc</span><span class="p">)</span>
+                <span class="n">unseen_dist</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">dist</span><span class="p">,</span> <span class="n">unseen_loc</span><span class="p">))</span>
+            <span class="n">unseen_dist</span><span class="o">.</span><span class="n">sort</span><span class="p">()</span>
+            <span class="k">for</span> <span class="n">dist</span><span class="p">,</span> <span class="n">unseen_loc</span> <span class="ow">in</span> <span class="n">unseen_dist</span><span class="p">:</span>
+                <span class="k">if</span> <span class="n">do_move_location</span><span class="p">(</span><span class="n">ant_loc</span><span class="p">,</span> <span class="n">unseen_loc</span><span class="p">):</span>
+                    <span class="k">break</span>
+</pre></div>
 
 
 First we trim the list of unseen squares by looping through every one and checking if we can see it.  We use yet another starter bot helper function:
@@ -71,10 +72,10 @@ Next we loop through all the ants and make sure they haven't been given an order
 Add the `unseenTiles` Set under the order declaration:
 
 
-    :::java
-        private Map<Tile, Tile> orders = new HashMap<Tile, Tile>();
+<div class="codehilite"><pre>    <span class="kd">private</span> <span class="n">Map</span><span class="o">&lt;</span><span class="n">Tile</span><span class="o">,</span> <span class="n">Tile</span><span class="o">&gt;</span> <span class="n">orders</span> <span class="o">=</span> <span class="k">new</span> <span class="n">HashMap</span><span class="o">&lt;</span><span class="n">Tile</span><span class="o">,</span> <span class="n">Tile</span><span class="o">&gt;();</span>
 
-        private Set<Tile> unseenTiles;
+    <span class="kd">private</span> <span class="n">Set</span><span class="o">&lt;</span><span class="n">Tile</span><span class="o">&gt;</span> <span class="n">unseenTiles</span><span class="o">;</span>
+</pre></div>
 
 
 The unseenTiles will be a set of all tiles we have not seen during the game.  *(Note: this could be a large list and not very memory efficient.  This is just the easiest way to make the code look nice.  You'll probably want to try and use a different technique for a real bot.)*
@@ -82,23 +83,23 @@ The unseenTiles will be a set of all tiles we have not seen during the game.  *(
 Next, add the following code near the top of the `doTurn` function, just below the foodTargets declaration:
 
 
-    :::java
-            // add all locations to unseen tiles set, run once
-            if (unseenTiles == null) {
-                unseenTiles = new HashSet<Tile>();
-                for (int row = 0; row < ants.getRows(); row++) {
-                    for (int col = 0; col < ants.getCols(); col++) {
-                        unseenTiles.add(new Tile(row, col));
-                    }
-                }
-            }
-            // remove any tiles that can be seen, run each turn
-            for (Iterator<Tile> locIter = unseenTiles.iterator(); locIter.hasNext(); ) {
-                Tile next = locIter.next();
-                if (ants.isVisible(next)) {
-                    locIter.remove();
-                }
-            }
+<div class="codehilite"><pre>        <span class="c1">// add all locations to unseen tiles set, run once</span>
+        <span class="k">if</span> <span class="o">(</span><span class="n">unseenTiles</span> <span class="o">==</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
+            <span class="n">unseenTiles</span> <span class="o">=</span> <span class="k">new</span> <span class="n">HashSet</span><span class="o">&lt;</span><span class="n">Tile</span><span class="o">&gt;();</span>
+            <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">row</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">row</span> <span class="o">&lt;</span> <span class="n">ants</span><span class="o">.</span><span class="na">getRows</span><span class="o">();</span> <span class="n">row</span><span class="o">++)</span> <span class="o">{</span>
+                <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">col</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">col</span> <span class="o">&lt;</span> <span class="n">ants</span><span class="o">.</span><span class="na">getCols</span><span class="o">();</span> <span class="n">col</span><span class="o">++)</span> <span class="o">{</span>
+                    <span class="n">unseenTiles</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="k">new</span> <span class="n">Tile</span><span class="o">(</span><span class="n">row</span><span class="o">,</span> <span class="n">col</span><span class="o">));</span>
+                <span class="o">}</span>
+            <span class="o">}</span>
+        <span class="o">}</span>
+        <span class="c1">// remove any tiles that can be seen, run each turn</span>
+        <span class="k">for</span> <span class="o">(</span><span class="n">Iterator</span><span class="o">&lt;</span><span class="n">Tile</span><span class="o">&gt;</span> <span class="n">locIter</span> <span class="o">=</span> <span class="n">unseenTiles</span><span class="o">.</span><span class="na">iterator</span><span class="o">();</span> <span class="n">locIter</span><span class="o">.</span><span class="na">hasNext</span><span class="o">();</span> <span class="o">)</span> <span class="o">{</span>
+            <span class="n">Tile</span> <span class="n">next</span> <span class="o">=</span> <span class="n">locIter</span><span class="o">.</span><span class="na">next</span><span class="o">();</span>
+            <span class="k">if</span> <span class="o">(</span><span class="n">ants</span><span class="o">.</span><span class="na">isVisible</span><span class="o">(</span><span class="n">next</span><span class="o">))</span> <span class="o">{</span>
+                <span class="n">locIter</span><span class="o">.</span><span class="na">remove</span><span class="o">();</span>
+            <span class="o">}</span>
+        <span class="o">}</span>
+</pre></div>
 
 
 The first part initializes the list to every Tile in the game.  It will only run during the first turn.  You shouldn't try and modify a collection while you are looping through it, so we use an iterator object, which allows for safe removal of Tiles while we loop through the list and check the visibility.
@@ -106,24 +107,24 @@ The first part initializes the list to every Tile in the game.  It will only run
 Last, add this code section between finding close food and unblocking your own hills:
 
 
-    :::java
-            // explore unseen areas
-            for (Tile antLoc : sortedAnts) {
-                if (!orders.containsValue(antLoc)) {
-                    List<Route> unseenRoutes = new ArrayList<Route>();
-                    for (Tile unseenLoc : unseenTiles) {
-                        int distance = ants.getDistance(antLoc, unseenLoc);
-                        Route route = new Route(antLoc, unseenLoc, distance);
-                        unseenRoutes.add(route);
-                    }
-                    Collections.sort(unseenRoutes);
-                    for (Route route : unseenRoutes) {
-                        if (doMoveLocation(route.getStart(), route.getEnd())) {
-                            break;
-                        }
-                    }
-                }
-            }
+<div class="codehilite"><pre>        <span class="c1">// explore unseen areas</span>
+        <span class="k">for</span> <span class="o">(</span><span class="n">Tile</span> <span class="n">antLoc</span> <span class="o">:</span> <span class="n">sortedAnts</span><span class="o">)</span> <span class="o">{</span>
+            <span class="k">if</span> <span class="o">(!</span><span class="n">orders</span><span class="o">.</span><span class="na">containsValue</span><span class="o">(</span><span class="n">antLoc</span><span class="o">))</span> <span class="o">{</span>
+                <span class="n">List</span><span class="o">&lt;</span><span class="n">Route</span><span class="o">&gt;</span> <span class="n">unseenRoutes</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ArrayList</span><span class="o">&lt;</span><span class="n">Route</span><span class="o">&gt;();</span>
+                <span class="k">for</span> <span class="o">(</span><span class="n">Tile</span> <span class="n">unseenLoc</span> <span class="o">:</span> <span class="n">unseenTiles</span><span class="o">)</span> <span class="o">{</span>
+                    <span class="kt">int</span> <span class="n">distance</span> <span class="o">=</span> <span class="n">ants</span><span class="o">.</span><span class="na">getDistance</span><span class="o">(</span><span class="n">antLoc</span><span class="o">,</span> <span class="n">unseenLoc</span><span class="o">);</span>
+                    <span class="n">Route</span> <span class="n">route</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Route</span><span class="o">(</span><span class="n">antLoc</span><span class="o">,</span> <span class="n">unseenLoc</span><span class="o">,</span> <span class="n">distance</span><span class="o">);</span>
+                    <span class="n">unseenRoutes</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="n">route</span><span class="o">);</span>
+                <span class="o">}</span>
+                <span class="n">Collections</span><span class="o">.</span><span class="na">sort</span><span class="o">(</span><span class="n">unseenRoutes</span><span class="o">);</span>
+                <span class="k">for</span> <span class="o">(</span><span class="n">Route</span> <span class="n">route</span> <span class="o">:</span> <span class="n">unseenRoutes</span><span class="o">)</span> <span class="o">{</span>
+                    <span class="k">if</span> <span class="o">(</span><span class="n">doMoveLocation</span><span class="o">(</span><span class="n">route</span><span class="o">.</span><span class="na">getStart</span><span class="o">(),</span> <span class="n">route</span><span class="o">.</span><span class="na">getEnd</span><span class="o">()))</span> <span class="o">{</span>
+                        <span class="k">break</span><span class="o">;</span>
+                    <span class="o">}</span>
+                <span class="o">}</span>
+            <span class="o">}</span>
+        <span class="o">}</span>
+</pre></div>
 
 
 Here, for every ant that doesn't have an order yet (we are checking the orders HashMap using the `containsValue()` method), we calculate the distance to every other unseen location.  Then we sort the ArrayList so the shortest distances are first.  We are using another help function from the starter bot.
